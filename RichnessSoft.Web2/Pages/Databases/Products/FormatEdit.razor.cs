@@ -1,14 +1,13 @@
 using Blazored.FluentValidation;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Http;
 using MudBlazor;
 using RichnessSoft.Common;
 using RichnessSoft.Entity.Model;
-using RichnessSoft.Web2.Pages.Databases.Products;
+
 
 namespace RichnessSoft.Web2.Pages.Databases.Products
 {
-    public partial class WeightsEdit
+    public partial class FormatEdit
     {
         [Parameter]
         public int Id { get; set; }
@@ -18,26 +17,27 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         private bool _loaded;
         string backURL = "";
         string Mode { get; set; }
-        Weight weight { get; set; }
+        Format format { get; set; }
         MudDatePicker _picker;
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
         protected override async Task OnInitializedAsync()
         {
-            backURL = "/Database/Weight/" + ParrentMenu;
+            backURL = "/Database/Format/" + ParrentMenu;
             if (Id > 0)
             {
                 Mode = gbVar.ModeEdit;
-                var r = weightService.GetById(Id);
-                weight = (Weight)r.Data;
+                var r = formatService.GetById(Id);
+                format = (Format)r.Data;
             }
             else
             {
                 Mode = gbVar.ModeInsert;
-                weight = new Weight();
-                weight.companyid = store.CurentCompany.id;
-                weight.active = ConstUtil.ACTIVE.YES;
+                format = new Format();
+                format.companyid = store.CurentCompany.id;
+                format.active = ConstUtil.ACTIVE.YES;
             }
         }
 
@@ -53,11 +53,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 {
                     if (Mode == gbVar.ModeInsert)
                     {
-                        results = weightService.Add(weight);
+                        results = formatService.Add(format);
                     }
                     else if (Mode == gbVar.ModeEdit)
                     {
-                        results = weightService.Edit(weight);
+                        results = formatService.Edit(format);
                     }
                     _loaded = false;
                     if (results.Success)
@@ -65,11 +65,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                         await Dialog.ShowMessageBox("info", Lng["SAVE_MSG_SUCCESS"], "OK");
                         if (Mode == gbVar.ModeInsert)
                         {
-                            weight = new Weight();
+                            format = new Format();
                         }
                         else
                         {
-                            NavigationManager.NavigateTo($"/Database/Weight/{ParrentMenu}");
+                            NavigationManager.NavigateTo($"/Database/Format/{ParrentMenu}");
                         }
                     }
                     else
@@ -86,18 +86,19 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 throw;
             }
         }
+
         private bool CheckDupCode()
         {
             bool bSucc = true;
-            var res = weightService.GetByCode(weight.companyid, weight.code);
-            if (res.Data != null && !string.IsNullOrEmpty(((Weight)res.Data)?.code))
+            var res = formatService.GetByCode(format.companyid, format.code);
+            if (res.Data != null && !string.IsNullOrEmpty(((Format)res.Data)?.code))
             {
-                Weight OldData = (Weight)res.Data;
+                Format OldData = (Format)res.Data;
                 if (Mode == gbVar.ModeInsert)
                 {
                     bSucc = false;
                 }
-                else if (Mode == gbVar.ModeEdit && OldData.id != weight.id)
+                else if (Mode == gbVar.ModeEdit && OldData.id != format.id)
                 {
                     bSucc = false;
                 }
@@ -109,13 +110,12 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             return bSucc;
         }
 
-
         async void activeChange(IEnumerable<string> values)
         {
             var sss = values.ToArray();
             if (sss[0] == ConstUtil.ACTIVE.YES)
             {
-                weight.inactivedate = null;
+                format.inactivedate = null;
                 _picker.Clear();
             }
             StateHasChanged();

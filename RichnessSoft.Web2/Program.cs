@@ -57,6 +57,7 @@ builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IPdGroupService, PdGroupService>();
 builder.Services.AddScoped<IWeightService, WeightService>();
 builder.Services.AddScoped<ISizeService,SizeService>();
+builder.Services.AddScoped<IFormatService,FormatService>();
 
 builder.Services.AddCors(options =>
 {

@@ -2631,7 +2631,8 @@
   <data name="TITLE_VENDORPRICE" xml:space="preserve">
     <value>รายละเอียดราคาซื้อตามผู้จำหน่าย</value>
   </data>
-  <data name="TITLE_WEIGHT" xml:space="preserve">
+  <data name="TITLE_
+		" xml:space="preserve">
     <value>รายละเอียดน้ำหนักสินค้า</value>
   </data>
   <data name="TITLE_WHOUSE" xml:space="preserve">
