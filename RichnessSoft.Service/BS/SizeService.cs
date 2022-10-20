@@ -31,19 +31,19 @@ namespace RichnessSoft.Service.BS
             _db = db;
             _store = store;
         }
-        public ResultModel Add(Sizex sz)
+        public ResultModel Add(Sizex sizex)
         {
             ResultModel res = new ResultModel();
             try
             {
                 using (var db = new RicnessDbContext())
                 {
-                    sz.createby = _store.CurrentUser.username;
-                    sz.createatutc = DateTime.Now;
-                    sz.companyid = _store.CurentCompany.id;
-                    db.Add(sz);
+                    sizex.createby = _store.CurrentUser.username;
+                    sizex.createatutc = DateTime.Now;
+                    sizex.companyid = _store.CurentCompany.id;
+                    db.Add(sizex);
                     db.SaveChanges();
-                    AddLog<Sizex>(sz);
+                    AddLog<Sizex>(sizex);
                     res.Success = true;
                 }
             }
@@ -55,14 +55,14 @@ namespace RichnessSoft.Service.BS
             return res;
         }
 
-        public ResultModel Delete(Sizex sz)
+        public ResultModel Delete(Sizex sizex)
         {
             ResultModel res = new ResultModel();
             try
             {
                 using (var db = new RicnessDbContext())
                 {
-                    var data = db.Size.Where(x => x.id == sz.id).FirstOrDefault();
+                    var data = db.Size.Where(x => x.id == sizex.id).FirstOrDefault();
                     db.Size.Remove(data);
                     DeleteLog<Sizex>(data);
                     db.SaveChanges();
@@ -77,21 +77,21 @@ namespace RichnessSoft.Service.BS
             return res;
         }
 
-        public ResultModel Edit(Sizex sz)
+        public ResultModel Edit(Sizex sizex)
         {
             ResultModel res = new ResultModel();
             try
             {
                 using (var db = new RicnessDbContext())
                 {
-                    var Olddata = db.Size.Where(x => x.id == sz.id).FirstOrDefault();
-                    sz.updateby = _store.CurrentUser.username;
-                    sz.companyid = _store.CurentCompany.id;
-                    sz.updateatutc = DateTime.Now;
-                    db.Size.Update(sz);
+                    var Olddata = db.Size.Where(x => x.id == sizex.id).FirstOrDefault();
+                    sizex.updateby = _store.CurrentUser.username;
+                    sizex.companyid = _store.CurentCompany.id;
+                    sizex.updateatutc = DateTime.Now;
+                    db.Size.Update(sizex);
                     db.SaveChanges();
-                    _db.Entry(sz).State = EntityState.Detached;
-                    UpdateLog<Sizex>(Olddata, sz);
+                    _db.Entry(sizex).State = EntityState.Detached;
+                    UpdateLog<Sizex>(Olddata, sizex);
                     res.Success = true;
                 }
             }

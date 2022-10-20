@@ -8,7 +8,7 @@ using RichnessSoft.Web2.Pages.Databases.Products;
 
 namespace RichnessSoft.Web2.Pages.Databases.Products
 {
-    public partial class SizesEdit
+    public partial class WeightsEdit
     {
         [Parameter]
         public int Id { get; set; }
@@ -18,26 +18,26 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         private bool _loaded;
         string backURL = "";
         string Mode { get; set; }
-        Sizex sizex { get; set; }
+        Weight weight { get; set; }
         MudDatePicker _picker;
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
         protected override async Task OnInitializedAsync()
         {
-            backURL = "/Database/Size/" + ParrentMenu;
+            backURL = "/Database/Weight/" + ParrentMenu;
             if (Id > 0)
             {
                 Mode = gbVar.ModeEdit;
                 var r = sizeService.GetById(Id);
-                sizex = (Sizex)r.Data;
+                weight = (Weight)r.Data;
             }
             else
             {
                 Mode = gbVar.ModeInsert;
-                sizex = new Sizex();
-                sizex.companyid = store.CurentCompany.id;
-                sizex.active = ConstUtil.ACTIVE.YES;
+                weight = new Weight();
+                weight.companyid = store.CurentCompany.id;
+                weight.active = ConstUtil.ACTIVE.YES;
             }
         }
 
@@ -53,11 +53,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 {
                     if (Mode == gbVar.ModeInsert)
                     {
-                        results = sizeService.Add(sizex);
+                        results = weightService.Add(weight);
                     }
                     else if (Mode == gbVar.ModeEdit)
                     {
-                        results = sizeService.Edit(sizex);
+                        results = weightService.Edit(weight);
                     }
                     _loaded = false;
                     if (results.Success)
@@ -65,11 +65,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                         await Dialog.ShowMessageBox("info", Lng["SAVE_MSG_SUCCESS"], "OK");
                         if (Mode == gbVar.ModeInsert)
                         {
-                            sizex = new Sizex();
+                            weight = new Weight();
                         }
                         else
                         {
-                            NavigationManager.NavigateTo($"/Database/Size/{ParrentMenu}");
+                            NavigationManager.NavigateTo($"/Database/Weight/{ParrentMenu}");
                         }
                     }
                     else
@@ -89,15 +89,15 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         private bool CheckDupCode()
         {
             bool bSucc = true;
-            var res = sizeService.GetByCode(sizex.companyid, sizex.code);
+            var res = weightService.GetByCode(weight.companyid, weight.code);
             if (res.Data != null && !string.IsNullOrEmpty(((Sizex)res.Data)?.code))
             {
-                Sizex OldData = (Sizex)res.Data;
+                Weight OldData = (Weight)res.Data;
                 if (Mode == gbVar.ModeInsert)
                 {
                     bSucc = false;
                 }
-                else if (Mode == gbVar.ModeEdit && OldData.id != sizex.id)
+                else if (Mode == gbVar.ModeEdit && OldData.id != weight.id)
                 {
                     bSucc = false;
                 }
@@ -115,7 +115,7 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             var sss = values.ToArray();
             if (sss[0] == ConstUtil.ACTIVE.YES)
             {
-                sizex.inactivedate = null;
+                weight.inactivedate = null;
                 _picker.Clear();
             }
             StateHasChanged();

@@ -2,20 +2,21 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using MudBlazor;
 using RichnessSoft.Entity.Model;
+using RichnessSoft.Service.BS;
 using RichnessSoft.Web2.Pages.Databases.Products;
 
 namespace RichnessSoft.Web2.Pages.Databases.Products
 {
-    public partial class Sizes
+    public partial class Weights
     {
         [Parameter]
         public string ParrentMenu { get; set; }
 
         private bool _loaded;
         string backURL = "";
-        List<Sizex> ListData = new List<Sizex>();
+        List<Weight> ListData = new List<Weight>();
         private string _searchString { get; set; }
-        private Sizex _sizex { get; set; }
+        private Weight _weight { get; set; }
         protected override async Task OnInitializedAsync()
         {
             _loaded = true;
@@ -29,8 +30,8 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             if (store.CurentCompany == null)
                 return;
 
-            var res = await Task.Run(() => sizeService.GetAllAsync(store.CurentCompany.id));
-            ListData = (List<Sizex>)res.Data;
+            var res = await Task.Run(() => weightService.GetAllAsync(store.CurentCompany.id));
+            ListData = (List<Weight>)res.Data;
         }
         protected override void OnParametersSet()
         {
@@ -62,9 +63,9 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             if (result == true)
             {
                 _loaded = true;
-                var r = sizeService.GetById(id);
-                Sizex sizex = (Sizex)r.Data;
-                var res = sizeService.Delete(sizex);
+                var r = weightService.GetById(id);
+                Weight weight = (Weight)r.Data;
+                var res = weightService.Delete(weight);
                 if (res.Success)
                 {
                     await Dialog.ShowMessageBox("info", Lng["CONFIRM_MSG_DEL_SUCCESS"], "OK");
@@ -80,18 +81,18 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 StateHasChanged();
             }
         }
-        private bool Search(Sizex sizex)
+        private bool Search(Weight weight)
         {
             if (string.IsNullOrWhiteSpace(_searchString)) return true;
-            if (sizex.code?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (weight.code?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (sizex.name1?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (weight.name1?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (sizex.name2?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (weight.name2?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
