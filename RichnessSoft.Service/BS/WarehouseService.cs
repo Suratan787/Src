@@ -11,41 +11,40 @@ using System.Threading.Tasks;
 
 namespace RichnessSoft.Service.BS
 {
-   public interface ISizeService
+    public interface IWarehouseService
     {
         ResultModel GetAll(int CorpId);
-    
         Task<ResultModel> GetAllAsync(int CorpId);
 
         ResultModel GetById(int Id);
         ResultModel GetByCode(int CorpId, string Code);
         ResultModel GetByName(int CorpId, string Name);
-        ResultModel Add(Sizex um);
-        ResultModel Edit(Sizex um);
-        ResultModel Delete(Sizex um);
+        ResultModel Add(Warehouse um);
+        ResultModel Edit(Warehouse um);
+        ResultModel Delete(Warehouse um);
     }
-    public class SizeService : BaseService, ISizeService
+    public class WarehouseService : BaseService, IWarehouseService
     {
         private readonly RicnessDbContext _db;
         private readonly ProfileStore _store;
-        public SizeService(RicnessDbContext db, ProfileStore store)
+        public WarehouseService(RicnessDbContext db, ProfileStore store)
         {
             _db = db;
             _store = store;
         }
-        public ResultModel Add(Sizex sizex)
+        public ResultModel Add(Warehouse warehouse)
         {
             ResultModel res = new ResultModel();
             try
             {
                 using (var db = new RicnessDbContext())
                 {
-                    sizex.createby = _store.CurrentUser.username;
-                    sizex.createatutc = DateTime.Now;
-                    sizex.companyid = _store.CurentCompany.id;
-                    db.Add(sizex);
+                    warehouse.createby = _store.CurrentUser.username;
+                    warehouse.createatutc = DateTime.Now;
+                    warehouse.companyid = _store.CurentCompany.id;
+                    db.Add(warehouse);
                     db.SaveChanges();
-                    AddLog<Sizex>(sizex);
+                    AddLog<Warehouse>(warehouse);
                     res.Success = true;
                 }
             }
@@ -57,16 +56,16 @@ namespace RichnessSoft.Service.BS
             return res;
         }
 
-        public ResultModel Delete(Sizex sizex)
+        public ResultModel Delete(Warehouse warehouse)
         {
             ResultModel res = new ResultModel();
             try
             {
                 using (var db = new RicnessDbContext())
                 {
-                    var data = db.Size.Where(x => x.id == sizex.id).FirstOrDefault();
-                    db.Size.Remove(data);
-                    DeleteLog<Sizex>(data);
+                    var data = db.Warehouse.Where(x => x.id == warehouse.id).FirstOrDefault();
+                    db.Warehouse.Remove(data);
+                    DeleteLog<Warehouse>(data);
                     db.SaveChanges();
                     res.Success = true;
                 }
@@ -79,21 +78,21 @@ namespace RichnessSoft.Service.BS
             return res;
         }
 
-        public ResultModel Edit(Sizex sizex)
+        public ResultModel Edit(Warehouse warehouse)
         {
             ResultModel res = new ResultModel();
             try
             {
                 using (var db = new RicnessDbContext())
                 {
-                    var Olddata = db.Size.Where(x => x.id == sizex.id).FirstOrDefault();
-                    sizex.updateby = _store.CurrentUser.username;
-                    sizex.companyid = _store.CurentCompany.id;
-                    sizex.updateatutc = DateTime.Now;
-                    db.Size.Update(sizex);
+                    var Olddata = db.Warehouse.Where(x => x.id == warehouse.id).FirstOrDefault();
+                    warehouse.updateby = _store.CurrentUser.username;
+                    warehouse.companyid = _store.CurentCompany.id;
+                    warehouse.updateatutc = DateTime.Now;
+                    db.Warehouse.Update(warehouse);
                     db.SaveChanges();
-                    _db.Entry(sizex).State = EntityState.Detached;
-                    UpdateLog<Sizex>(Olddata, sizex);
+                    _db.Entry(warehouse).State = EntityState.Detached;
+                    UpdateLog<Warehouse>(Olddata, warehouse);
                     res.Success = true;
                 }
             }
@@ -112,38 +111,35 @@ namespace RichnessSoft.Service.BS
         public ResultModel GetAll(int CorpId, string strActive = ConstUtil.ACTIVE.YES)
         {
             ResultModel res = new ResultModel();
-            res.Data = _db.Size.Where(x => x.companyid == CorpId&& (x.active.Equals(strActive)|| x.inactivedate >= DateTime.Now.Date)).ToList();
+            res.Data = _db.Warehouse.Where(x => x.companyid == CorpId && (x.active.Equals(strActive) || x.inactivedate >= DateTime.Now.Date)).ToList();
             return res;
         }
 
         public async Task<ResultModel> GetAllAsync(int CorpId)
-
         {
             ResultModel res = new ResultModel();
-            res.Data = _db.Size.Where(x => x.companyid == CorpId).ToList();
+            res.Data = _db.Warehouse.Where(x => x.companyid == CorpId).ToList();
             return res;
         }
 
         public ResultModel GetByCode(int CorpId, string Code)
-
         {
             ResultModel res = new ResultModel();
-            res.Data = _db.Size.Where(x => x.companyid == CorpId && x.code.Equals(Code)).FirstOrDefault();
+            res.Data = _db.Warehouse.Where(x => x.companyid == CorpId && x.code.Equals(Code)).FirstOrDefault();
             return res;
         }
 
         public ResultModel GetById(int Id)
         {
             ResultModel res = new ResultModel();
-            res.Data = _db.Size.Where(x => x.id == Id).FirstOrDefault();
+            res.Data = _db.Warehouse.Where(x => x.id == Id).FirstOrDefault();
             return res;
         }
 
         public ResultModel GetByName(int CorpId, string Name)
         {
             ResultModel res = new ResultModel();
-            res.Data = _db.Size.Where(x => x.companyid == CorpId && x.code.Contains(Name)).ToList();
+            res.Data = _db.Warehouse.Where(x => x.companyid == CorpId && x.code.Contains(Name)).ToList();
             return res;
         }
-    }
 }
