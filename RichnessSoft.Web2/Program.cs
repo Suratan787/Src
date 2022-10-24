@@ -59,7 +59,6 @@ builder.Services.AddScoped<IWeightService, WeightService>();
 builder.Services.AddScoped<ISizeService,SizeService>();
 builder.Services.AddScoped<IFormatService,FormatService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
-builder.Services.AddScoped<ICustGroupService, CustGroupService>();
 
 builder.Services.AddCors(options =>
 {
