@@ -1,14 +1,13 @@
 using Blazored.FluentValidation;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Http;
 using MudBlazor;
 using RichnessSoft.Common;
 using RichnessSoft.Entity.Model;
-using RichnessSoft.Web2.Pages.Databases.Products;
 
-namespace RichnessSoft.Web2.Pages.Databases.Products
+
+namespace RichnessSoft.Web2.Pages.Databases.Banks
 {
-    public partial class WarehousesEdit
+    public partial class BanksEdit
     {
         [Parameter]
         public int Id { get; set; }
@@ -18,26 +17,27 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         private bool _loaded;
         string backURL = "";
         string Mode { get; set; }
-        Warehouse warehouse { get; set; }
+        Bank bank { get; set; }
         MudDatePicker _picker;
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
         protected override async Task OnInitializedAsync()
         {
-            backURL = "/Database/Whouse/" + ParrentMenu;
+            backURL = "/Database/Bank/" + ParrentMenu;
             if (Id > 0)
             {
                 Mode = gbVar.ModeEdit;
-                var r = warehouseService.GetById(Id);
-                warehouse = (Warehouse)r.Data;
+                var r = bankService.GetById(Id);
+                bank = (Bank)r.Data;
             }
             else
             {
                 Mode = gbVar.ModeInsert;
-                warehouse = new Warehouse();
-                warehouse.companyid = store.CurentCompany.id;
-                warehouse.active = ConstUtil.ACTIVE.YES;
+                bank = new Bank();
+                bank.companyid = store.CurentCompany.id;
+                bank.active = ConstUtil.ACTIVE.YES;
             }
         }
 
@@ -53,11 +53,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 {
                     if (Mode == gbVar.ModeInsert)
                     {
-                        results = warehouseService.Add(warehouse);
+                        results = bankService.Add(bank);
                     }
                     else if (Mode == gbVar.ModeEdit)
                     {
-                        results = warehouseService.Edit(warehouse);
+                        results = bankService.Edit(bank);
                     }
                     _loaded = false;
                     if (results.Success)
@@ -65,11 +65,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                         await Dialog.ShowMessageBox("info", Lng["SAVE_MSG_SUCCESS"], "OK");
                         if (Mode == gbVar.ModeInsert)
                         {
-                            warehouse = new Warehouse();
+                            bank = new Bank();
                         }
                         else
                         {
-                            NavigationManager.NavigateTo($"/Database/Whouse/{ParrentMenu}");
+                            NavigationManager.NavigateTo($"/Database/Bank/{ParrentMenu}");
                         }
                     }
                     else
@@ -86,18 +86,19 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 throw;
             }
         }
+
         private bool CheckDupCode()
         {
             bool bSucc = true;
-            var res = warehouseService.GetByCode(warehouse.companyid, warehouse.code);
-            if (res.Data != null && !string.IsNullOrEmpty(((Warehouse)res.Data)?.code))
+            var res = bankService.GetByCode(bank.companyid, bank.code);
+            if (res.Data != null && !string.IsNullOrEmpty(((Bank)res.Data)?.code))
             {
-                Warehouse OldData = (Warehouse)res.Data;
+                Bank OldData = (Bank)res.Data;
                 if (Mode == gbVar.ModeInsert)
                 {
                     bSucc = false;
                 }
-                else if (Mode == gbVar.ModeEdit && OldData.id != warehouse.id)
+                else if (Mode == gbVar.ModeEdit && OldData.id != bank.id)
                 {
                     bSucc = false;
                 }
@@ -109,13 +110,12 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             return bSucc;
         }
 
-
         async void activeChange(IEnumerable<string> values)
         {
-            var wg = values.ToArray();
-            if (wg[0] == ConstUtil.ACTIVE.YES)
+            var fm = values.ToArray();
+            if (fm[0] == ConstUtil.ACTIVE.YES)
             {
-                warehouse.inactivedate = null;
+                bank.inactivedate = null;
                 _picker.Clear();
             }
             StateHasChanged();

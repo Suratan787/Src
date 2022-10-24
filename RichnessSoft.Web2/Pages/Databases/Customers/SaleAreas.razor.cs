@@ -5,18 +5,18 @@ using RichnessSoft.Entity.Model;
 using RichnessSoft.Service.BS;
 using RichnessSoft.Web2.Pages.Databases.Products;
 
-namespace RichnessSoft.Web2.Pages.Databases.Products
+namespace RichnessSoft.Web2.Pages.Databases.Customers
 {
-    public partial class Warehouses
+    public partial class SaleAreas
     {
         [Parameter]
         public string ParrentMenu { get; set; }
 
         private bool _loaded;
         string backURL = "";
-        List<Warehouse> ListData = new List<Warehouse>();
+        List<SaleArea> ListData = new List<SaleArea>();
         private string _searchString { get; set; }
-        private Warehouse _Warehouse { get; set; }
+        private SaleArea _saleArea { get; set; }
         protected override async Task OnInitializedAsync()
         {
             _loaded = true;
@@ -30,8 +30,8 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             if (store.CurentCompany == null)
                 return;
 
-            var res = await Task.Run(() => warehouseService.GetAllAsync(store.CurentCompany.id));
-            ListData = (List<Warehouse>)res.Data;
+            var res = await Task.Run(() => saleareaService.GetAllAsync(store.CurentCompany.id));
+            ListData = (List<SaleArea>)res.Data;
         }
         protected override void OnParametersSet()
         {
@@ -39,7 +39,7 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         }
         async void AddNewAsync()
         {
-            string URL = $"/Database/WhouseEdit/0/{ParrentMenu}";
+            string URL = $"/Database/TerritoryEdit/0/{ParrentMenu}";
             NavigationManager.NavigateTo(URL);
         }
         async void ReloadAsync()
@@ -51,7 +51,7 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         }
         async void OnEdit(int id)
         {
-            string URL = $"/Database/WhouseEdit/{id}/{ParrentMenu}";
+            string URL = $"/Database/TerritoryEdit/{id}/{ParrentMenu}";
             NavigationManager.NavigateTo(URL);
         }
         async void OnDelete(int id)
@@ -63,9 +63,9 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             if (result == true)
             {
                 _loaded = true;
-                var r = warehouseService.GetById(id);
-                Warehouse warehouse = (Warehouse)r.Data;
-                var res = warehouseService.Delete(warehouse);
+                var r = saleareaService.GetById(id);
+                SaleArea salearea = (SaleArea)r.Data;
+                var res = saleareaService.Delete(salearea);
                 if (res.Success)
                 {
                     await Dialog.ShowMessageBox("info", Lng["CONFIRM_MSG_DEL_SUCCESS"], "OK");
@@ -81,22 +81,18 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 StateHasChanged();
             }
         }
-        private bool Search(Warehouse warehouse)
+        private bool Search(SaleArea salearea)
         {
             if (string.IsNullOrWhiteSpace(_searchString)) return true;
-            if (warehouse.warehousetype?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (salearea.code?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (warehouse.code?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (salearea.name1?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (warehouse.name1?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            if (warehouse.name2?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (salearea.name2?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

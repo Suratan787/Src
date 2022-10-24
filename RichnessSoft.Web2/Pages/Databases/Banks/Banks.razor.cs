@@ -2,21 +2,20 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using MudBlazor;
 using RichnessSoft.Entity.Model;
-using RichnessSoft.Service.BS;
-using RichnessSoft.Web2.Pages.Databases.Products;
 
-namespace RichnessSoft.Web2.Pages.Databases.Products
+namespace RichnessSoft.Web2.Pages.Databases.Banks
 {
-    public partial class Warehouses
+    public partial class Banks
     {
         [Parameter]
         public string ParrentMenu { get; set; }
 
         private bool _loaded;
         string backURL = "";
-        List<Warehouse> ListData = new List<Warehouse>();
+        List<Bank> ListData = new List<Bank>();
         private string _searchString { get; set; }
-        private Warehouse _Warehouse { get; set; }
+        private Bank _bank { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             _loaded = true;
@@ -27,21 +26,24 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         }
         async Task LoadData()
         {
+
             if (store.CurentCompany == null)
                 return;
 
-            var res = await Task.Run(() => warehouseService.GetAllAsync(store.CurentCompany.id));
-            ListData = (List<Warehouse>)res.Data;
+            var res = await Task.Run(() => bankService.GetAllAsync(store.CurentCompany.id));
+            ListData = (List<Bank>)res.Data;
         }
         protected override void OnParametersSet()
         {
             backURL = "SubMenu/" + ParrentMenu;
         }
+
         async void AddNewAsync()
         {
-            string URL = $"/Database/WhouseEdit/0/{ParrentMenu}";
+            string URL = $"/Database/BanksEdit/0/{ParrentMenu}";
             NavigationManager.NavigateTo(URL);
         }
+
         async void ReloadAsync()
         {
             _loaded = true;
@@ -49,30 +51,31 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
             _loaded = false;
             StateHasChanged();
         }
+
         async void OnEdit(int id)
         {
-            string URL = $"/Database/WhouseEdit/{id}/{ParrentMenu}";
+            string URL = $"/Database/BanksEdit/{id}/{ParrentMenu}";
             NavigationManager.NavigateTo(URL);
         }
+
         async void OnDelete(int id)
         {
             bool? result = await Dialog.ShowMessageBox(
-          "Deletd", Lng["CONFIRM_MSG_DEL"],
-          yesText: "Yes", cancelText: "Cancel");
+           "Deletd", Lng["CONFIRM_MSG_DEL"],
+           yesText: "Yes", cancelText: "Cancel");
 
             if (result == true)
             {
                 _loaded = true;
-                var r = warehouseService.GetById(id);
-                Warehouse warehouse = (Warehouse)r.Data;
-                var res = warehouseService.Delete(warehouse);
+                var r = bankService.GetById(id);
+                Bank bank = (Bank)r.Data;
+                var res = bankService.Delete(bank);
                 if (res.Success)
                 {
                     await Dialog.ShowMessageBox("info", Lng["CONFIRM_MSG_DEL_SUCCESS"], "OK");
                     await LoadData();
                 }
                 else
-
                 {
                     await Dialog.ShowMessageBox("info", Lng["CONFIRM_MSG_DEL_FAIL"], "OK");
                     await Dialog.ShowMessageBox("info", res.Message, "OK");
@@ -81,26 +84,34 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 StateHasChanged();
             }
         }
-        private bool Search(Warehouse warehouse)
+
+        private bool Search(Bank bank)
         {
             if (string.IsNullOrWhiteSpace(_searchString)) return true;
-            if (warehouse.warehousetype?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (bank.code?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (warehouse.code?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (bank.botcode?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (warehouse.name1?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (bank.swicfcode?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (warehouse.name2?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+
+            if (bank.name1?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (bank.name2?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
             return false;
         }
+
+
     }
 }

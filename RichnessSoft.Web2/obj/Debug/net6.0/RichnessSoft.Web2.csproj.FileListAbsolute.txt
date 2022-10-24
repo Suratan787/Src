@@ -248,7 +248,6 @@ C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\Richness
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.AssemblyInfoInputs.cache
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.AssemblyInfo.cs
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.csproj.CoreCompileInputs.cache
-C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.RazorAssemblyInfo.cache
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.RazorAssemblyInfo.cs

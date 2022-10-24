@@ -35,6 +35,38 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Banks/BankBranchs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEJhbmtzXEJhbmtCcmFuY2hzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Banks/BankBranchsEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEJhbmtzXEJhbmtCcmFuY2hzRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Banks/Banks.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEJhbmtzXEJhbmtzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Banks/BanksEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEJhbmtzXEJhbmtzRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Customers/CustGroups.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEN1c3RvbWVyc1xDdXN0R3JvdXBzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Customers/CustGroupsEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEN1c3RvbWVyc1xDdXN0R3JvdXBzRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Customers/SaleAreas.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEN1c3RvbWVyc1xTYWxlQXJlYXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Customers/SaleAreasEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEN1c3RvbWVyc1xTYWxlQXJlYXNFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Products/FormatEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXFByb2R1Y3RzXEZvcm1hdEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

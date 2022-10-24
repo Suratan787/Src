@@ -6,9 +6,9 @@ using RichnessSoft.Common;
 using RichnessSoft.Entity.Model;
 using RichnessSoft.Web2.Pages.Databases.Products;
 
-namespace RichnessSoft.Web2.Pages.Databases.Products
+namespace RichnessSoft.Web2.Pages.Databases.Customers
 {
-    public partial class WarehousesEdit
+    public partial class SaleAreasEdit
     {
         [Parameter]
         public int Id { get; set; }
@@ -18,26 +18,26 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         private bool _loaded;
         string backURL = "";
         string Mode { get; set; }
-        Warehouse warehouse { get; set; }
+        SaleArea salearea { get; set; }
         MudDatePicker _picker;
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
         protected override async Task OnInitializedAsync()
         {
-            backURL = "/Database/Whouse/" + ParrentMenu;
+            backURL = "/Database/Territory/" + ParrentMenu;
             if (Id > 0)
             {
                 Mode = gbVar.ModeEdit;
-                var r = warehouseService.GetById(Id);
-                warehouse = (Warehouse)r.Data;
+                var r = saleareaService.GetById(Id);
+                salearea = (SaleArea)r.Data;
             }
             else
             {
                 Mode = gbVar.ModeInsert;
-                warehouse = new Warehouse();
-                warehouse.companyid = store.CurentCompany.id;
-                warehouse.active = ConstUtil.ACTIVE.YES;
+                salearea = new SaleArea();
+                salearea.companyid = store.CurentCompany.id;
+                salearea.active = ConstUtil.ACTIVE.YES;
             }
         }
 
@@ -53,11 +53,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                 {
                     if (Mode == gbVar.ModeInsert)
                     {
-                        results = warehouseService.Add(warehouse);
+                        results = saleareaService.Add(salearea);
                     }
                     else if (Mode == gbVar.ModeEdit)
                     {
-                        results = warehouseService.Edit(warehouse);
+                        results = saleareaService.Edit(salearea);
                     }
                     _loaded = false;
                     if (results.Success)
@@ -65,11 +65,11 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
                         await Dialog.ShowMessageBox("info", Lng["SAVE_MSG_SUCCESS"], "OK");
                         if (Mode == gbVar.ModeInsert)
                         {
-                            warehouse = new Warehouse();
+                            salearea = new SaleArea();
                         }
                         else
                         {
-                            NavigationManager.NavigateTo($"/Database/Whouse/{ParrentMenu}");
+                            NavigationManager.NavigateTo($"/Database/Territory/{ParrentMenu}");
                         }
                     }
                     else
@@ -89,15 +89,15 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
         private bool CheckDupCode()
         {
             bool bSucc = true;
-            var res = warehouseService.GetByCode(warehouse.companyid, warehouse.code);
-            if (res.Data != null && !string.IsNullOrEmpty(((Warehouse)res.Data)?.code))
+            var res = saleareaService.GetByCode(salearea.companyid, salearea.code);
+            if (res.Data != null && !string.IsNullOrEmpty(((SaleArea)res.Data)?.code))
             {
-                Warehouse OldData = (Warehouse)res.Data;
+                SaleArea OldData = (SaleArea)res.Data;
                 if (Mode == gbVar.ModeInsert)
                 {
                     bSucc = false;
                 }
-                else if (Mode == gbVar.ModeEdit && OldData.id != warehouse.id)
+                else if (Mode == gbVar.ModeEdit && OldData.id != salearea.id)
                 {
                     bSucc = false;
                 }
@@ -112,10 +112,10 @@ namespace RichnessSoft.Web2.Pages.Databases.Products
 
         async void activeChange(IEnumerable<string> values)
         {
-            var wg = values.ToArray();
-            if (wg[0] == ConstUtil.ACTIVE.YES)
+            var sz = values.ToArray();
+            if (sz[0] == ConstUtil.ACTIVE.YES)
             {
-                warehouse.inactivedate = null;
+                salearea.inactivedate = null;
                 _picker.Clear();
             }
             StateHasChanged();

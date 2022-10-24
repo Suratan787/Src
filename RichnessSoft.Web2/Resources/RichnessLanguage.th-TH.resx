@@ -2591,6 +2591,9 @@
   </data>
   <data name="TITLE_SALEMANE" xml:space="preserve">
     <value>รายละเอียดพนักงานขาย</value>
+  </data>  
+  <data name="TITLE_SALEAREAS" xml:space="preserve">
+  <value>รายละเอียดเขตการขาย</value>
   </data>
   <data name="TITLE_SALETEAM" xml:space="preserve">
     <value>รายละเอียดทีมขาย</value>
