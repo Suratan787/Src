@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RichnessSoft.Common;
 using RichnessSoft.Entity.Context;
 using RichnessSoft.Entity.Model;
 using RichnessSoft.Service.Store;
@@ -105,8 +106,12 @@ namespace RichnessSoft.Service.BS
 
         public ResultModel GetAll(int CorpId)
         {
+            return GetAll(CorpId, ConstUtil.ACTIVE.YES);
+        }
+        public ResultModel GetAll(int CorpId, string strActive = ConstUtil.ACTIVE.YES)
+        {
             ResultModel res = new ResultModel();
-            res.Data = _db.Weight.Where(x => x.companyid == CorpId).ToList();
+            res.Data = _db.Weight.Where(x => x.companyid == CorpId && (x.active.Equals(strActive) || x.inactivedate >= DateTime.Now.Date)).ToList();
             return res;
         }
 

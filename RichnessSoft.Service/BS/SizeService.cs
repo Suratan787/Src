@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RichnessSoft.Common;
 using RichnessSoft.Entity.Context;
 using RichnessSoft.Entity.Model;
 using RichnessSoft.Service.Store;
@@ -12,7 +13,8 @@ namespace RichnessSoft.Service.BS
 {
    public interface ISizeService
     {
-        ResultModel GetAll(int CorpId);
+        ResultModel GetAll(int CorpId)
+    
         Task<ResultModel> GetAllAsync(int CorpId);
 
         ResultModel GetById(int Id);
@@ -105,12 +107,17 @@ namespace RichnessSoft.Service.BS
 
         public ResultModel GetAll(int CorpId)
         {
+            return GetAll(CorpId, ConstUtil.ACTIVE.YES);
+        }
+        public ResultModel GetAll(int CorpId, string strActive = ConstUtil.ACTIVE.YES)
+        {
             ResultModel res = new ResultModel();
-            res.Data = _db.Size.Where(x => x.companyid == CorpId).ToList();
+            res.Data = _db.Size.Where(x => x.companyid == CorpId&& (x.active.Equals(strActive)|| x.inactivedate >= DateTime.Now.Date)).ToList();
             return res;
         }
 
         public async Task<ResultModel> GetAllAsync(int CorpId)
+
         {
             ResultModel res = new ResultModel();
             res.Data = _db.Size.Where(x => x.companyid == CorpId).ToList();
@@ -118,6 +125,7 @@ namespace RichnessSoft.Service.BS
         }
 
         public ResultModel GetByCode(int CorpId, string Code)
+
         {
             ResultModel res = new ResultModel();
             res.Data = _db.Size.Where(x => x.companyid == CorpId && x.code.Equals(Code)).FirstOrDefault();
