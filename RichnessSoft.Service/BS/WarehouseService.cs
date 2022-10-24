@@ -42,6 +42,7 @@ namespace RichnessSoft.Service.BS
                     warehouse.createby = _store.CurrentUser.username;
                     warehouse.createatutc = DateTime.Now;
                     warehouse.companyid = _store.CurentCompany.id;
+                    warehouse.branchid = 1;
                     db.Add(warehouse);
                     db.SaveChanges();
                     AddLog<Warehouse>(warehouse);
@@ -89,6 +90,7 @@ namespace RichnessSoft.Service.BS
                     warehouse.updateby = _store.CurrentUser.username;
                     warehouse.companyid = _store.CurentCompany.id;
                     warehouse.updateatutc = DateTime.Now;
+                    
                     db.Warehouse.Update(warehouse);
                     db.SaveChanges();
                     _db.Entry(warehouse).State = EntityState.Detached;
@@ -142,4 +144,5 @@ namespace RichnessSoft.Service.BS
             res.Data = _db.Warehouse.Where(x => x.companyid == CorpId && x.code.Contains(Name)).ToList();
             return res;
         }
+    }
 }

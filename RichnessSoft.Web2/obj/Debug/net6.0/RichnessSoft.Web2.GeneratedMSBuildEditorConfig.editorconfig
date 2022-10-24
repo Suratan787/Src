@@ -71,6 +71,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXFByb2R1Y3RzXFdhcmVob3VzZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Products/WarehousesEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXFByb2R1Y3RzXFdhcmVob3VzZXNFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Products/Weights.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXFByb2R1Y3RzXFdlaWdodHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
