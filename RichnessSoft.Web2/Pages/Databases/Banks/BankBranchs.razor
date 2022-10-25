@@ -1,9 +1,9 @@
-﻿@page "/Database/Bank"
-@page "/Database/Bank/{ParrentMenu}"
+﻿@page "/Database/BankBranch"
+@page "/Database/BankBranch/{ParrentMenu}"
 @inherits razorBase
 
 <MudOverlay @bind-Visible="@_loaded" DarkBackground="true" ZIndex="9999" AutoClose="true" />
-<AppTitle Title="@Lng["TITLE_BANK"]" Description="" />
+<AppTitle Title="@Lng["TITLE_BRANCH"]" Description="" />
 <MudPaper Elevation="20" Square="false">
     <MudToolBar Dense="false" DisableGutters="true">
         <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" Variant="ThemeApp.goVariant" Color="MudBlazor.Color.Surface" ButtonType="ButtonType.Button" @onclick="(()=> NavigationManager.NavigateTo(backURL))" title="กลับ" Class="mr-1">@Lng["BACK"]</MudIconButton>
@@ -18,20 +18,19 @@
         <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@Lng["ButtonShowFilterRow"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="MudBlazor.Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh><MudTableSortLabel SortBy="new Func<BankBranch, object>(x => x.code)">@Lng["BANK_CODE"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortBy="new Func<BankBranch, object>(x => x.name1)">@Lng["BANK_NAME"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortBy="new Func<BankBranch, object>(x => x.name2)">@Lng["BANK_NAME_2"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<BankBranch, object>(x => x.code)">@Lng["BANKBRANCH_CODE"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<BankBranch, object>(x => x.name1)">@Lng["BANKBRANCH_NAME"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<BankBranch, object>(x => x.name2)">@Lng["BANKBRANCH_NAME_2"]</MudTableSortLabel></MudTh>
         <MudTh Style="text-align:center;width:70px;">Actions</MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="@Lng["BANK_CODE"]">
+        <MudTd DataLabel="@Lng["BANKBRANCH_CODE"]">
             <MudHighlighter Text="@context.code" HighlightedText="@_searchString" />
         </MudTd>
-        </MudTd>
-        <MudTd DataLabel="@Lng["BANK_NAME"]">
+        <MudTd DataLabel="@Lng["BANKBRANCH_NAME"]">
             <MudHighlighter Text="@context.name1" HighlightedText="@_searchString" />
         </MudTd>
-        <MudTd DataLabel="@Lng["BANK_NAME_2"]">
+        <MudTd DataLabel="@Lng["BANKBRANCH_NAME_2"]">
             <MudHighlighter Text="@context.name2" HighlightedText="@_searchString" />
         </MudTd>
         <MudTd DataLabel="Actions" Style="text-align:center">

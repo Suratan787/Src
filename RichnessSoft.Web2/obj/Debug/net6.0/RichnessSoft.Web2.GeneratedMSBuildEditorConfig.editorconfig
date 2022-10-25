@@ -67,6 +67,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXEN1c3RvbWVyc1xTYWxlQXJlYXNFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Organizations/Departments.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXE9yZ2FuaXphdGlvbnNcRGVwYXJ0bWVudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Organizations/DepartmentsEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXE9yZ2FuaXphdGlvbnNcRGVwYXJ0bWVudHNFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Organizations/Sections.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXE9yZ2FuaXphdGlvbnNcU2VjdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Organizations/SectionsEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXE9yZ2FuaXphdGlvbnNcU2VjdGlvbnNFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Develop-02/Desktop/Src-main/RichnessSoft.Web2/Pages/Databases/Products/FormatEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VzXFByb2R1Y3RzXEZvcm1hdEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

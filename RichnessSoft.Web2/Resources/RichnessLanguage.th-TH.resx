@@ -1086,6 +1086,9 @@
   <data name="DEPT_SECT" xml:space="preserve">
     <value>ฝ่าย</value>
   </data>
+	<data name="DEPT_STATUS" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
   <data name="DESIGN_ACTIVE" xml:space="preserve">
     <value>ใช้งาน</value>
   </data>
@@ -1955,6 +1958,9 @@
   </data>
   <data name="SECT_NAME_2" xml:space="preserve">
     <value>ชื่อฝ่าย ภาษา 2</value>
+  </data> 
+  <data name="SECT_STATUS" xml:space="preserve">
+    <value>สถานะ</value>
   </data>
   <data name="SELECT_OPTION" xml:space="preserve">
     <value>---- กรุณาเลือก ----</value>

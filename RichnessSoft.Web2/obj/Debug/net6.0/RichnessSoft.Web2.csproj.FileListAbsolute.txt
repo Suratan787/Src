@@ -360,3 +360,4 @@ C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\refint\R
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.pdb
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.genruntimeconfig.cache
 C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\ref\RichnessSoft.Web2.dll
+C:\Users\Develop-02\Desktop\Src-main\RichnessSoft.Web2\obj\Debug\net6.0\RichnessSoft.Web2.MvcApplicationPartsAssemblyInfo.cs

@@ -1,8 +1,8 @@
-﻿@page "/Database/BanksEdit/{Id:int}/{ParrentMenu}"
+﻿@page "/Database/BankBranchsEdit/{Id:int}/{ParrentMenu}"
 @inherits razorBase
 
 <MudOverlay @bind-Visible="@_loaded" DarkBackground="true" ZIndex="9999" AutoClose="true" />
-<AppTitle Title="@Lng["TITLE_BANK"]" Description="" />
+<AppTitle Title="@Lng["TITLE_BRANCH"]" Description="" />
 <MudPaper MaxWidth="MaxWidth.Small" Class="d-flex justify-center flex-grow-1 gap-4" Elevation="0">
     <MudGrid Spacing="0" Class="d-flex justify-center flex-grow-1 gap-4">
         <MudItem xs="12" sm="5">
@@ -13,16 +13,16 @@
 
                     <MudGrid>
                         <MudItem xs="12" sm="12">
-                            <MudTextField Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.code" T="string" Variant="ThemeApp.goVariant" Label="@Lng["BANK_CODE"]" />
+                            <MudTextField Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.code" T="string" Variant="ThemeApp.goVariant" Label="@Lng["BANKBRANCH_CODE"]" />
                         </MudItem> 
                         <MudItem xs="12" sm="12">
-                            <MudTextField Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.name1" T="string" Variant="ThemeApp.goVariant" Label="@Lng["BANK_NAME"]" Required="true" RequiredError="@(Lng["BANK_NAME"] + "is required!")" />
+                            <MudTextField Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.name1" T="string" Variant="ThemeApp.goVariant" Label="@Lng["BANKBRANCH_NAME"]" Required="true" RequiredError="@(Lng["BANKBRANCH_NAME"] + "is required!")" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
-                            <MudTextField Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.name2" T="string" Variant="ThemeApp.goVariant" Label="@Lng["BANK_NAME_2"]" Required="false" />
+                            <MudTextField Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.name2" T="string" Variant="ThemeApp.goVariant" Label="@Lng["BANKBRANCH_NAME_2"]" Required="false" />
                         </MudItem>
                         <MudItem xs="12" sm="6">
-                            <MudSelect Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.active" Variant="ThemeApp.goVariant" T="string" Label="@Lng["BANK_STATUS"]" AnchorOrigin="Origin.BottomCenter" SelectedValuesChanged="activeChange">
+                            <MudSelect Margin="ThemeApp.goMargin" @bind-Value="@bankbranch.active" Variant="ThemeApp.goVariant" T="string" Label="@Lng["BANKBRANCH_STATUS"]" AnchorOrigin="Origin.BottomCenter" SelectedValuesChanged="activeChange">
                                 @foreach (var item in ConstUtil.goListActive)
                                 {
                                         <MudSelectItem T="string" Value="@item.code">@item.name</MudSelectItem>
@@ -30,7 +30,7 @@
                             </MudSelect>
                         </MudItem>
                         <MudItem xs="12" sm="6">
-                            <MudDatePicker Margin="ThemeApp.goMargin" @ref="_picker" @bind-Value="@bankbranch.inactivedate" Variant="ThemeApp.goVariant" Label="@Lng["BANK_ACTIVE"]"
+                            <MudDatePicker Margin="ThemeApp.goMargin" @ref="_picker" @bind-Value="@bankbranch.inactivedate" Variant="ThemeApp.goVariant" Label="@Lng["BANKBRANCH_ACTIVE"]"
                                            AutoClose="true"
                                            DateFormat="dd/MM/yyyy"
                                            TitleDateFormat="dd/MM/yyyy"
