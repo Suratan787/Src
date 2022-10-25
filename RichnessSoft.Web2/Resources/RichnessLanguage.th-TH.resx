@@ -1959,6 +1959,7 @@
   <data name="SECT_NAME_2" xml:space="preserve">
     <value>ชื่อฝ่าย ภาษา 2</value>
   </data> 
+
   <data name="SECT_STATUS" xml:space="preserve">
     <value>สถานะ</value>
   </data>
@@ -3009,6 +3010,9 @@
     <value>ชื่อกลุ่มสินค้า ภาษา 2</value>
   </data>
 	<data name="PROD_GROUP_STATUS" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="PROJ_STATUS" xml:space="preserve">
     <value>สถานะ</value>
   </data>
 	

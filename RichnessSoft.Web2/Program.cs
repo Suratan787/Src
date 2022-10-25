@@ -65,6 +65,7 @@ builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IBankBranchService, BankBranchService>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<ISectionService, SectionService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 builder.Services.AddCors(options =>
 {
